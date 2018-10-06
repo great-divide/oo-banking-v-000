@@ -12,7 +12,8 @@ class Transfer
   def valid?
     if self.sender.valid? == true && self.receiver.valid? == true
       true
-    else false
+    elsif self.sender.valid? == false || self.receiver.valid? == false
+      false
     end
   end
   
@@ -21,7 +22,8 @@ class Transfer
       self.sender.balance = self.sender.balance - self.amount
       self.receiver.balance = self.receiver.balance + self.amount
       self.status = "complete"
-    else "Transaction rejected. Please check your account balance."
+    elsif  self.valid? == false
+    "Transaction rejected. Please check your account balance."
     end
   end
     
